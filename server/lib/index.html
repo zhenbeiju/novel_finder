@@ -1,20 +1,40 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>追小说</title>
+<link href="//netdna.bootstrapcdn.com/bootswatch/2.3.1/spruce/bootstrap.min.css" rel="stylesheet">
+<script src="//zeptojs.com/zepto.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io.connect('http://192.168.1.191:18080');
   socket.on('connection', function (data) {
     console.log(data);
-    socket.emit('message', { pong: 'client'});
+    socket.emit('index', {});
   });
-  socket.on('message', function (data) {
+  socket.on('index', function (data) {
     console.log(data);
-    socket.emit('message', { pong: 'client' });
+    $.each(data, function(index, item) {
+      $('#main').append('<p>'+item.key+ ' ' + item.value+'</p>')
+    });
   });
 </script>
 </head>
 <body>
-    <h1>Novel Finder</h1>
-    <p>hello world</p>
+  <div class="container">
+    <div class="hero-unit">
+      <h1>追小说</h1>
+      <p>哦</p>
+      <p>
+        <a class="btn btn-primary btn-large">
+          Learn more
+        </a>
+      </p>
+    </div>
+    <div id="main">
+  </div>
+</div>
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
