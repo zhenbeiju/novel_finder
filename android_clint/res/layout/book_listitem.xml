@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/book_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="罪恶之城"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/book_chaptername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/book_name"
+        android:text="第三百六十五掌 李察的愤怒"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/book_writer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/book_chaptername"
+        android:layout_alignBottom="@+id/book_chaptername"
+        android:layout_alignParentRight="true"
+        android:textColor="#cccccc"
+        android:text="烟雨江南"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
