@@ -5,18 +5,25 @@ db = require('nano')('http://192.168.1.188:5984/novel')
 
 server.listen(18080)
 
+book_feed = db.follow({since: 'now'})
+book_feed.on 'change', (change) ->
+    console.log change
+    db.view 'index', 'books', {group: true, keys: [ change.id ]}, (err, body) ->
+        io.sockets.emit 'change', body
+
+book_feed.follow()
+
 app.get '/', (req, res) ->
     res.sendfile(__dirname + '/index.html')
 
+app.get '/client.js', (req, res) ->
+    res.sendfile(__dirname + '/client.js')
+
 io.sockets.on 'connection', (socket) ->
-    db.view 'index', 'books', {group: true}, (err, body) ->
-        console.log "body:::"
-        console.log body
-        socket.emit('index', body.rows)
-
-io.sockets.on 'message', (message, callback) ->
-    console.log(message)
-    socket.emit('message', {ping: 'server'})
-
-io.sockets.on 'disconnect', () ->
-    console.log('client disconnected')
+    socket.emit 'message', { welcome: "ok" }
+    socket.on 'index', (data) ->
+        db.view 'index', 'books', { group: true }, (err, body) ->
+            socket.emit 'index', {'type': 'books', 'data' : body.rows}
+    socket.on 'book', (data) ->
+        db.view 'index', 'chapters', { group: true, keys: [data.id] },  (err, body) ->
+            socket.emit 'book', {'type' : 'chapters', 'data' : body.rows}
