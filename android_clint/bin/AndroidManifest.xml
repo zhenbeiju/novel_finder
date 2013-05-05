@@ -36,6 +36,9 @@
         <activity
             android:name=".UnReadSelectActivity"
             android:label="@string/app_name" />
+        <activity
+            android:name=".BookIndexActivity"
+            android:label="@string/app_name" />
 
         <service android:name=".service.MyService" />
     </application>

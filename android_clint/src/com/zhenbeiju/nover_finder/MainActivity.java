@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.zhenbeiju.nover_finder.fragment.BookChapterFragMent;
 import com.zhenbeiju.nover_finder.fragment.BooksFragment;
 import com.zhenbeiju.nover_finder.fragment.ResponsFragment;
 import com.zhenbeiju.nover_finder.fragment.UnReadFragment;
@@ -24,17 +25,17 @@ public class MainActivity extends Activity {
         startService();
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setTitle("追小说");
         Tab tab1 = actionBar.newTab().setText("订阅")
                 .setTabListener(new TabListener<ResponsFragment>(this, "", ResponsFragment.class));
         Tab tab2 = actionBar.newTab().setText("排行")
                 .setTabListener(new TabListener<BooksFragment>(this, "", BooksFragment.class));
         Tab tab3 = actionBar.newTab().setText("未读")
-                .setTabListener(new TabListener<UnReadFragment>(this, "", UnReadFragment.class));
+                .setTabListener(new TabListener<BookChapterFragMent>(this, "", BookChapterFragMent.class));
         actionBar.addTab(tab3);
         actionBar.addTab(tab2);
         actionBar.addTab(tab1);
-        
+
     }
 
     @Override

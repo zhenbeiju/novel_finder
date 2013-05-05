@@ -29,7 +29,7 @@ public class UnReadFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         ChapterInfo chapterInfo = new ChapterInfo();
-        chapterInfo.ChapterContext = "12312312";
+        chapterInfo.ChapterContent = "12312312";
         chapterInfo.ChapterName = "李察的愤怒";
         chapterInfo.LastUpDate = "一小时前";
         chapterInfo.TextNumber = "6225";

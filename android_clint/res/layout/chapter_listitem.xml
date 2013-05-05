@@ -10,8 +10,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="4dip"
+        android:layout_marginTop="4dip"
+        android:singleLine="true"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -19,7 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
+        android:layout_marginBottom="4dip"
+        android:layout_marginLeft="4dip"
+        android:layout_marginTop="4dip"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textSize="18sp" />
 
 </RelativeLayout>

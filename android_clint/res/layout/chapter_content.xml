@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/chapter_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:text="chapter title"
+                android:textSize="24sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/chapter_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:text="chapter index"
+                android:textSize="18sp" >
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dip" >
+
+                <Button
+                    android:id="@+id/prepage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:text="prepage" >
+                </Button>
+
+                <Button
+                    android:id="@+id/nextpage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:text="nextpage" >
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

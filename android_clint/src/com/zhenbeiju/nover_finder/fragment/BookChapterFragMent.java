@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.zhenbeiju.nover_finder.BookIndexActivity;
 import com.zhenbeiju.nover_finder.R;
-import com.zhenbeiju.nover_finder.net.help.ValueList;
-import com.zhenbeiju.nover_finder.util.BookInfo;
+import com.zhenbeiju.nover_finder.ReadActivity;
+import com.zhenbeiju.nover_finder.util.ChapterInfo;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -16,25 +16,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class ResponsFragment extends Fragment {
+public class BookChapterFragMent extends Fragment {
     private ListView mListView;
-    private List<BookInfo> mbookInfos = new ArrayList<BookInfo>();
+    private ChapterAdapter mAdapter;
+    private List<ChapterInfo> mChapterInfos = new ArrayList<ChapterInfo>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        BookInfo bookInfo = new BookInfo();
-        bookInfo.BookName = "jiangye";
-        bookInfo.BookWriter = "maoni";
-        bookInfo.CurrentChapter = "shenlaizhibi";
-        mbookInfos.add(bookInfo);
-        mbookInfos.add(bookInfo);
+        mChapterInfos.add(new ChapterInfo("123123", "123123", "12312421", "123234545"));
+        mChapterInfos.add(new ChapterInfo("123123", "123123", "12312421", "123234545"));
+        mChapterInfos.add(new ChapterInfo("123123", "123123", "12312421", "123234545"));
+        mChapterInfos.add(new ChapterInfo("123123", "123123", "12312421", "123234545"));
     }
 
     @Override
@@ -42,15 +41,15 @@ public class ResponsFragment extends Fragment {
         // TODO Auto-generated method stub
         View v = inflater.inflate(R.layout.book_layout, null);
         mListView = (ListView) v.findViewById(R.id.booklist);
-        mListView.setAdapter(new myAdapter(getActivity()));
+        mAdapter = new ChapterAdapter(getActivity());
+        mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
                 Intent i = new Intent();
-                i.setClass(getActivity(), BookIndexActivity.class);
-                i.putExtra("bookid", mbookInfos.get(position).BookId);
+                i.setClass(BookChapterFragMent.this.getActivity(), ReadActivity.class);
                 startActivity(i);
             }
         });
@@ -63,24 +62,18 @@ public class ResponsFragment extends Fragment {
         super.onDestroy();
     }
 
-    @Override
-    public void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-    }
-
     private class ViewHolder {
         private TextView mTVTitle;
-        private TextView mTVWiter;
+        private TextView mTVauthor;
         private TextView mTVChapter;
     }
 
-    private class myAdapter extends BaseAdapter {
+    private class ChapterAdapter extends BaseAdapter {
 
         private Context mContext;
         private LayoutInflater mLayoutInflater;
 
-        private myAdapter(Context context) {
+        private ChapterAdapter(Context context) {
             mContext = context;
             mLayoutInflater = LayoutInflater.from(context);
         }
@@ -88,7 +81,7 @@ public class ResponsFragment extends Fragment {
         @Override
         public int getCount() {
             // TODO Auto-generated method stub
-            return mbookInfos.size();
+            return mChapterInfos.size();
         }
 
         @Override
@@ -112,20 +105,17 @@ public class ResponsFragment extends Fragment {
                 convertView = mLayoutInflater.inflate(R.layout.book_listitem, null);
                 _viewHolder.mTVChapter = (TextView) convertView.findViewById(R.id.book_chaptername);
                 _viewHolder.mTVTitle = (TextView) convertView.findViewById(R.id.book_name);
-                _viewHolder.mTVWiter = (TextView) convertView.findViewById(R.id.book_writer_name);
+                _viewHolder.mTVauthor = (TextView) convertView.findViewById(R.id.book_writer_name);
                 convertView.setTag(_viewHolder);
             } else {
-
                 _viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            _viewHolder.mTVChapter.setText(mbookInfos.get(position).CurrentChapter);
-            _viewHolder.mTVTitle.setText(mbookInfos.get(position).BookName);
-            _viewHolder.mTVWiter.setText(mbookInfos.get(position).BookWriter);
+            _viewHolder.mTVChapter.setText(mChapterInfos.get(position).LastUpDate);
+            _viewHolder.mTVTitle.setText(mChapterInfos.get(position).ChapterName);
+            _viewHolder.mTVauthor.setText(mChapterInfos.get(position).TextNumber);
 
             return convertView;
         }
-
     }
-
 }
